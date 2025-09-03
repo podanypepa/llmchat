@@ -41,7 +41,7 @@ func NewClient(apiKey string) (*Client, error) {
 	}, nil
 }
 
-func NewClientWithConfig(config Config) (*Client, error) {
+func NewClientWithConfig(config *Config) (*Client, error) {
 	if config.APIKey == "" {
 		return nil, fmt.Errorf("API key is required")
 	}
