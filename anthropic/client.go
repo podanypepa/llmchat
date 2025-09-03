@@ -2,9 +2,22 @@
 package anthropic
 
 import (
+	"cmp"
 	"fmt"
 	"net/http"
+	"time"
 )
+
+const (
+	// DefaultTimeout is the default timeout for HTTP requests.
+	DefaultTimeout = 60 * time.Second
+)
+
+// Config for the Anthropic API client.
+type Config struct {
+	APIKey      string
+	HTTTTimeout time.Duration
+}
 
 // Client of the Anthropic API.
 type Client struct {
@@ -21,5 +34,18 @@ func NewClient(apiKey string) (*Client, error) {
 	return &Client{
 		apiKey:     apiKey,
 		httpClient: &http.Client{},
+	}, nil
+}
+
+func NewClientWithConfig(config Config) (*Client, error) {
+	if config.APIKey == "" {
+		return nil, fmt.Errorf("API key is required")
+	}
+
+	return &Client{
+		apiKey: config.APIKey,
+		httpClient: &http.Client{
+			Timeout: cmp.Or(config.HTTTTimeout, DefaultTimeout),
+		},
 	}, nil
 }
