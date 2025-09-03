@@ -11,17 +11,21 @@ import (
 const (
 	// DefaultTimeout is the default timeout for HTTP requests.
 	DefaultTimeout = 60 * time.Second
+	// DefaultBaseURL is the default base URL for the Anthropic API.
+	DefaultBaseURL = "https://api.anthropic.com"
 )
 
 // Config for the Anthropic API client.
 type Config struct {
 	APIKey      string
+	BaseURL     string
 	HTTTTimeout time.Duration
 }
 
 // Client of the Anthropic API.
 type Client struct {
 	apiKey     string
+	config     Config
 	httpClient *http.Client
 }
 
