@@ -3,6 +3,8 @@ package anthropic
 const (
 	// RoleUser represents a user message role.
 	RoleUser = "user"
+	// RoleSystem represents a system message role.
+	RoleSystem = "system"
 )
 
 // Message represents a message in the conversation.
