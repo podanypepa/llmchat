@@ -1,5 +1,10 @@
 package anthropic
 
+const (
+	// RoleUser represents a user message role.
+	RoleUser = "user"
+)
+
 // Message represents a message in the conversation.
 type Message struct {
 	Role    string `json:"role"`
