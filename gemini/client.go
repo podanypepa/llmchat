@@ -15,6 +15,7 @@ type Client struct {
 // Config holds the configuration for the Client.
 type Config struct {
 	APIKey       string
+	Model        string
 	DefaultModel string
 }
 
