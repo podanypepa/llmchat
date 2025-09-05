@@ -60,9 +60,9 @@ type ImageSource struct {
 type Tool struct {
 	Name         string            `json:"name"` // povinné
 	Description  string            `json:"description,omitempty"`
-	InputSchema  JSONSchemaObject  `json:"input_schema"`            // JSON Schema (type: object)
-	Type         string            `json:"type,omitempty"`          // "custom" (volitelně)
-	CacheControl *ToolCacheControl `json:"cache_control,omitempty"` // volitelné cache breakpoints
+	InputSchema  JSONSchemaObject  `json:"input_schema"`
+	Type         string            `json:"type,omitempty"`
+	CacheControl *ToolCacheControl `json:"cache_control,omitempty"`
 }
 
 // ToolCacheControl defines caching behavior for tool results.
@@ -110,7 +110,7 @@ const (
 
 // ThinkingCfg enables the model to use "thinking" mode with a specified token budget.
 type ThinkingCfg struct {
-	Type         string `json:"type"`          // musí být "enabled"
+	Type         string `json:"type"`
 	BudgetTokens int    `json:"budget_tokens"` // >=1024 a < max_tokens
 }
 
@@ -146,14 +146,14 @@ type MCPToolConfig struct {
 
 // Response represents the response from the Messages API.
 type Response struct {
-	ID         string           `json:"id"`            // např. "msg_013Zva2CMH..."
-	Type       string           `json:"type"`          // obvykle "message"
-	Role       Role             `json:"role"`          // "assistant"
-	Model      string           `json:"model"`         // model, který odpovídal
-	Content    []AssistantBlock `json:"content"`       // text a/nebo tool_use bloky
-	StopReason string           `json:"stop_reason"`   // "end_turn" | "max_tokens" | "stop_sequence" | "tool_use" ...
-	StopSeq    *string          `json:"stop_sequence"` // může být null
-	Usage      Usage            `json:"usage"`         // počty tokenů
+	ID         string           `json:"id"`
+	Type       string           `json:"type"`
+	Role       Role             `json:"role"`
+	Model      string           `json:"model"`
+	Content    []AssistantBlock `json:"content"`
+	StopReason string           `json:"stop_reason"`
+	StopSeq    *string          `json:"stop_sequence"`
+	Usage      Usage            `json:"usage"`
 }
 
 // Usage contains token usage statistics.
