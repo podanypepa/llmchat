@@ -17,8 +17,8 @@ func TestSend(t *testing.T) {
 	req := &Request{
 		Model: "",
 		Messages: []Message{
-			{Role: "system", Content: "You are a pirate."},
-			{Role: "user", Content: "Hello!"},
+			{Role: "system", Content: []string{"You are a helpful assistant."}},
+			{Role: "user", Content: []string{"Write a haiku about the sea."}},
 		},
 	}
 

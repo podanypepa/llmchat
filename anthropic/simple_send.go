@@ -9,7 +9,7 @@ func (c *Client) SimpleSend(ctx context.Context, message string) (*Response, err
 		Messages: []Message{
 			{
 				Role:    RoleUser,
-				Content: message,
+				Content: []string{message},
 			},
 		},
 	}
@@ -24,11 +24,11 @@ func (c *Client) SimpleSendWithSystem(ctx context.Context, system, message strin
 		Messages: []Message{
 			{
 				Role:    RoleSystem,
-				Content: system,
+				Content: []string{system},
 			},
 			{
 				Role:    RoleUser,
-				Content: message,
+				Content: []string{message},
 			},
 		},
 	}
