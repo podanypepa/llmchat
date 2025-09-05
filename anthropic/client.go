@@ -42,6 +42,7 @@ func NewClient(apiKey string) (*Client, error) {
 	}, nil
 }
 
+// NewClientWithConfig creates a new Anthropic API client with the given configuration.
 func NewClientWithConfig(config *Config) (*Client, error) {
 	if config.APIKey == "" {
 		return nil, fmt.Errorf("API key is required")

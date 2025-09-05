@@ -7,7 +7,7 @@ const (
 	Gpt5mini = "gpt-5-mini"
 	// Gpt5nano is the smallest and fastest version of Gpt5.
 	Gpt5nano = "gpt-5-nano"
-	// Gpr4_1 is an advanced version of Gpt4 with improved capabilities.
+	// Gpt4_1 is an advanced version of Gpt4 with improved capabilities.
 	Gpt4_1 = "gpt-4.1"
 	// Gpt4_1Mini is a smaller and faster version of Gpt4_1.
 	Gpt4_1Mini = "gpt-4.1-mini"
