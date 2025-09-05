@@ -8,7 +8,7 @@ import (
 
 const (
 	// DefaultapiURL is the default base URL for the DeepSeek API.
-	DefaultapiURL = "https://api.deepseek.com/chat/completions"
+	DefaultapiURL = "https://api.deepseek.com"
 )
 
 // Client is the ChatGPT API client.

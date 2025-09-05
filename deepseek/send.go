@@ -42,10 +42,10 @@ func (c *Client) Send(ctx context.Context, req *ChatCompletionRequest) (*ChatCom
 	case <-ctx.Done():
 		return nil, ctx.Err()
 	case result := <-resultChan:
-		defer result.resp.Body.Close()
 		if result.err != nil {
 			return nil, fmt.Errorf("request failed: %w", result.err)
 		}
+		defer result.resp.Body.Close()
 
 		var chatResponse ChatCompletionResponse
 		if err := json.NewDecoder(result.resp.Body).Decode(&chatResponse); err != nil {
