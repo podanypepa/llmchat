@@ -35,3 +35,25 @@ const (
 	// released in February 2024. Suitable for more complex reasoning tasks.
 	ModelClaude3Opus = "claude-3-opus-20240229"
 )
+
+const (
+	// DefaultModel is the default model used by the client.
+	DefaultModel = ModelClaudeSonnet4
+)
+
+// AllModels is a list of all available Anthropic Claude models.
+var AllModels = []string{
+	ModelClaudeSonnet4,
+	ModelClaudeOpus41,
+	ModelClaudeOpus4,
+	ModelClaude35Sonnet,
+	ModelClaude35Haiku,
+	ModelClaude3Sonnet,
+	ModelClaude3Haiku,
+	ModelClaude3Opus,
+}
+
+// GetAllModels returns a list of all available Anthropic Claude models.
+func GetAllModels() []string {
+	return AllModels
+}
