@@ -1,6 +1,8 @@
 // Package gemini implements a Gemini protocol client.
 package gemini
 
+import "errors"
+
 // GenerateContentRequest represents a request to Gemini API.
 type GenerateContentRequest struct {
 	// One or more content blocks (conversation turns).
@@ -81,4 +83,26 @@ type UsageMetadata struct {
 	PromptTokenCount     int `json:"promptTokenCount"`
 	CandidatesTokenCount int `json:"candidatesTokenCount"`
 	TotalTokenCount      int `json:"totalTokenCount"`
+}
+
+// ExtractText returns the text of the first candidate's first part.
+// It will return an error if no candidate or no text is available.
+func (r *GenerateContentResponse) ExtractText() (string, error) {
+	if r == nil {
+		return "", errors.New("response is nil")
+	}
+	if len(r.Candidates) == 0 {
+		return "", errors.New("no candidates in response")
+	}
+	c := r.Candidates[0]
+	if len(c.Content.Parts) == 0 {
+		return "", errors.New("no parts in first candidate")
+	}
+	// Look for first non-empty text part
+	for _, p := range c.Content.Parts {
+		if p.Text != "" {
+			return p.Text, nil
+		}
+	}
+	return "", errors.New("no text part found in first candidate")
 }
