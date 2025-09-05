@@ -19,7 +19,7 @@ const (
 type Config struct {
 	APIKey      string
 	BaseURL     string
-	HTTTTimeout time.Duration
+	HTTPTimeout time.Duration
 }
 
 // Client of the Anthropic API.
@@ -49,7 +49,7 @@ func NewClientWithConfig(config *Config) (*Client, error) {
 	return &Client{
 		apiKey: config.APIKey,
 		httpClient: &http.Client{
-			Timeout: cmp.Or(config.HTTTTimeout, DefaultTimeout),
+			Timeout: cmp.Or(config.HTTPTimeout, DefaultTimeout),
 		},
 	}, nil
 }
