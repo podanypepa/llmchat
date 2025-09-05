@@ -25,6 +25,9 @@ func TestSend(t *testing.T) {
 	resp, err := client.Send(context.TODO(), req)
 	assert.NoError(t, err)
 	assert.NotNil(t, resp)
+	if err != nil || resp == nil {
+		t.FailNow()
+	}
 
 	fmt.Println(resp.Content[0].Text)
 }
