@@ -34,4 +34,7 @@ func TestSend(t *testing.T) {
 	}
 
 	fmt.Println(resp.Content[0].Text)
+	fmt.Println("input tokens:", resp.Usage.InputTokens)
+	fmt.Println("output tokens:", resp.Usage.OutputTokens)
+	fmt.Println("total tokens:", resp.Usage.InputTokens+resp.Usage.OutputTokens)
 }
