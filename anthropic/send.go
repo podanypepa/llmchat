@@ -18,6 +18,7 @@ func (c *Client) Send(ctx context.Context, req *Request) (*Response, error) {
 		return nil, fmt.Errorf("request is empty")
 	}
 
+	fmt.Println(string(jsonData)) // Debug: print the JSON request
 	endpoint := "/v1/messages"
 	httpReq, err := http.NewRequest("POST", c.config.BaseURL+endpoint, bytes.NewBuffer(jsonData))
 	if err != nil {

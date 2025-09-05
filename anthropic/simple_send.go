@@ -23,7 +23,7 @@ func (c *Client) SimpleSendWithSystem(ctx context.Context, system, message strin
 		Model: "",
 		Messages: []Message{
 			{
-				Role:    RoleSystem,
+				Role:    Role(system),
 				Content: []string{system},
 			},
 			{

@@ -37,6 +37,7 @@ func NewClient(apiKey string) (*Client, error) {
 
 	return &Client{
 		apiKey:     apiKey,
+		config:     Config{BaseURL: DefaultBaseURL},
 		httpClient: &http.Client{},
 	}, nil
 }
