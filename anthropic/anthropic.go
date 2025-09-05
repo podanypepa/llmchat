@@ -3,22 +3,22 @@ package anthropic
 import "encoding/json"
 
 type Request struct {
-	Model       string       `json:"model"`                // např. "claude-sonnet-4-20250514"
-	Messages    []Message    `json:"messages"`             // střídající se user/assistant
-	MaxTokens   int          `json:"max_tokens,omitempty"` // povinné
-	System      any          `json:"system,omitempty"`     // string NEBO []ContentBlock (viz doc)
+	Model       string       `json:"model"`
+	Messages    []Message    `json:"messages"`
+	MaxTokens   int          `json:"max_tokens,omitempty"`
+	System      any          `json:"system,omitempty"`
 	Metadata    *RequestMeta `json:"metadata,omitempty"`
 	StopSeq     []string     `json:"stop_sequences,omitempty"`
-	Temperature *float64     `json:"temperature,omitempty"` // 0..1
-	TopP        *float64     `json:"top_p,omitempty"`       // 0..1
-	TopK        *int         `json:"top_k,omitempty"`       // >=0
+	Temperature *float64     `json:"temperature,omitempty"`
+	TopP        *float64     `json:"top_p,omitempty"`
+	TopK        *int         `json:"top_k,omitempty"`
 	Stream      bool         `json:"stream,omitempty"`
-	ServiceTier *ServiceTier `json:"service_tier,omitempty"` // "auto" | "standard_only"
+	ServiceTier *ServiceTier `json:"service_tier,omitempty"`
 	Tools       []Tool       `json:"tools,omitempty"`
 	ToolChoice  *ToolChoice  `json:"tool_choice,omitempty"`
-	Thinking    *ThinkingCfg `json:"thinking,omitempty"`    // extended thinking (vyžaduje >=1024 tokenů)
-	MCPServers  []MCPServer  `json:"mcp_servers,omitempty"` // volitelné
-	Container   *string      `json:"container,omitempty"`   // reuse id
+	Thinking    *ThinkingCfg `json:"thinking,omitempty"`
+	MCPServers  []MCPServer  `json:"mcp_servers,omitempty"`
+	Container   *string      `json:"container,omitempty"`
 }
 
 type Message struct {
