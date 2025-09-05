@@ -15,7 +15,7 @@ func TestSend(t *testing.T) {
 	assert.NotNil(t, client)
 
 	req := &Request{
-		Model:     "claude-sonnet-4-20250514",
+		Model:     ModelClaude35Haiku,
 		System:    "You are a helpful assistant.",
 		MaxTokens: 300,
 		Messages: []Message{
