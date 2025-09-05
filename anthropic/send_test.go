@@ -10,7 +10,7 @@ import (
 )
 
 func TestSend(t *testing.T) {
-	client, err := NewClient(os.Getenv("OPENAI_API_KEY"))
+	client, err := NewClient(os.Getenv("ANTHROPIC_API_KEY"))
 	assert.NoError(t, err)
 	assert.NotNil(t, client)
 

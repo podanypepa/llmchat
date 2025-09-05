@@ -24,7 +24,7 @@ func TestNewClient(t *testing.T) {
 		{
 			name: "valid api key",
 			args: args{
-				apikey: os.Getenv("OPENAI_API_KEY"),
+				apikey: os.Getenv("ANTHROPIC_API_KEY"),
 			},
 			wantErr: false,
 		},
@@ -65,7 +65,7 @@ func TestNewClientWithConfig(t *testing.T) {
 			name: "valid api key",
 			args: args{
 				config: &Config{
-					APIKey: os.Getenv("OPENAI_API_KEY"),
+					APIKey: os.Getenv("ANTHROPIC_API_KEY"),
 				},
 			},
 			wantErr: false,
