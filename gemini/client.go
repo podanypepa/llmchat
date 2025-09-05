@@ -20,9 +20,13 @@ type Config struct {
 }
 
 // NewClient creates a new Client with the provided API key.
-func NewClient(apikey string) (*Client, error) {
+func NewClient(apikey string, model string) (*Client, error) {
 	if apikey == "" {
 		return nil, fmt.Errorf("API key is required")
+	}
+
+	if model == "" {
+		return nil, fmt.Errorf("Model is required")
 	}
 
 	return &Client{
@@ -30,6 +34,7 @@ func NewClient(apikey string) (*Client, error) {
 		config: &Config{
 			APIKey:       apikey,
 			DefaultModel: DefaultModel,
+			Model:        model,
 		},
 	}, nil
 }
