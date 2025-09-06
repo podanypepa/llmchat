@@ -50,9 +50,9 @@ type ReasoningConfig struct {
 	ReturnThinking bool `json:"return_thinking,omitempty"`
 }
 
-// ChatCompletionResponse represents a standard DeepSeek API response
+// ChatResponse represents a standard DeepSeek API response
 // for both chat and reasoning models.
-type ChatCompletionResponse struct {
+type ChatResponse struct {
 	ID      string   `json:"id"`      // unique identifier for the completion
 	Object  string   `json:"object"`  // usually "chat.completion"
 	Created int64    `json:"created"` // unix timestamp (seconds)
