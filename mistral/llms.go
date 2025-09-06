@@ -3,63 +3,44 @@ package mistral
 // Mistral model IDs for use with the Mistral AI API.
 // These constants represent model identifiers you can pass to the "model" parameter.
 const (
-	// ModelMistral7B is the standard open-source Mistral model (~7.3B parameters),
-	// released in September 2023. Includes both base and instruct-tuned versions.
-	ModelMistral7B = "mistral-7b"
+	// Open-source models
+	ModelMistralSmallLatest = "mistral-small-latest" // small instruct model, 2024–2025
+	ModelMistralSmall2312   = "mistral-small-2312"   // alias: Open-Mixtral-8x7B
+	ModelMistralTiny2312    = "mistral-tiny-2312"    // alias: Open-Mistral-7B
 
-	// ModelMixtral8x7B is a sparse mixture-of-experts model (~46.7B parameters total,
-	// ~13B active per token), released April 2024. Offers high performance with efficiency.
-	ModelMixtral8x7B = "mixtral-8x7b"
+	// Premier models
+	ModelMistralMedium3     = "mistral-medium-3"     // released May 2025
+	ModelMistralMedium31    = "mistral-medium-3.1"   // extended Medium variant
+	ModelMistralLargeLatest = "mistral-large-latest" // flagship dense model (2402 release)
 
-	// ModelMixtral8x7BInstruct is the instruct-tuned version of Mixtral 8x7B.
-	ModelMixtral8x7BInstruct = "mixtral-8x7b-instruct"
+	// Reasoning models
+	ModelMagistralSmall  = "magistral-small"  // released June 2025
+	ModelMagistralMedium = "magistral-medium" // reasoning-focused, more powerful
 
-	// ModelCodestral22B is a code-specialized model (~22B parameters),
-	// released May 2024. Licensed for research use.
-	ModelCodestral22B = "codestral-22b"
+	// Coding model
+	ModelCodestral2501 = "codestral-25.01" // code-specialized model (Jan 2025)
 
-	// ModelCodestralMamba7B is a lighter code model (~7B parameters),
-	// released July 2024 under Apache 2.0.
-	ModelCodestralMamba7B = "codestral-mamba-7b"
-
-	// ModelMathstral7B is a STEM-focused model (~7B parameters),
-	// released July 2024 with extended context (32k tokens) under Apache 2.0.
-	ModelMathstral7B = "mathstral-7b"
-
-	// ModelMistralSmall31 is the small multimodal model (~24B parameters),
-	// released March 2025 (version 3.1) with enhanced reasoning and image understanding.
-	ModelMistralSmall31 = "mistral-small-3.1"
-
-	// ModelMistralMedium3 is the mid-tier model ("Medium 3"), released May 2025,
-	// offering Claude-comparable performance at lower cost.
-	ModelMistralMedium3 = "mistral-medium-3"
-
-	// ModelMagistralSmall is the open-source reasoning model (chain-of-thought),
-	// released June 2025 under Apache 2.0.
-	ModelMagistralSmall = "magistral-small"
-
-	// ModelMagistralMedium is the more powerful enterprise reasoning model,
-	// also released June 2025 (proprietary/commercial).
-	ModelMagistralMedium = "magistral-medium"
+	// High-performance model (Vertex AI release)
+	ModelMistralLarge2411 = "mistral-large-24.11"
 )
 
 const (
 	// DefaultModel is the default Mistral model used for requests.
-	DefaultModel = ModelMistral7B
+	DefaultModel = ModelMistralSmallLatest
 )
 
 // AllModels is a list of all available Mistral model IDs.
 var AllModels = []string{
-	ModelMistral7B,
-	ModelMixtral8x7B,
-	ModelMixtral8x7BInstruct,
-	ModelCodestral22B,
-	ModelCodestralMamba7B,
-	ModelMathstral7B,
-	ModelMistralSmall31,
+	ModelMistralSmallLatest,
+	ModelMistralSmall2312,
+	ModelMistralTiny2312,
 	ModelMistralMedium3,
+	ModelMistralMedium31,
+	ModelMistralLargeLatest,
 	ModelMagistralSmall,
 	ModelMagistralMedium,
+	ModelCodestral2501,
+	ModelMistralLarge2411,
 }
 
 // GetAllModels returns a list of all available Mistral model IDs.
