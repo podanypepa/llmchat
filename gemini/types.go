@@ -5,6 +5,9 @@ import "errors"
 
 // ChatRequest represents a request to Gemini API.
 type ChatRequest struct {
+	// SystemInstruction is an optional system-level instruction.
+	SystemInstruction *Content `json:"systemInstruction,omitempty"`
+
 	// One or more content blocks (conversation turns).
 	Contents []Content `json:"contents"`
 
