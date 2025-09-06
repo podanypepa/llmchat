@@ -33,7 +33,13 @@ func (c *Client) Send(ctx context.Context, req *GenerateContentRequest) (*Genera
 	}, 1)
 
 	go func() {
-		resp, err := llmrequest.SendRequest(ctx, httpReq, map[string]string{"accept": "application/json"})
+		resp, err := llmrequest.SendRequest(
+			ctx,
+			httpReq,
+			map[string]string{
+				"accept": "application/json",
+			},
+		)
 		resultChan <- struct {
 			resp *http.Response
 			err  error
