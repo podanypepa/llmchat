@@ -23,8 +23,8 @@ type ChatMessage struct {
 	Content string `json:"content"` // plain text content
 }
 
-// ChatCompletionResponse represents the response from Perplexity's /chat/completions API.
-type ChatCompletionResponse struct {
+// ChatResponse represents the response from Perplexity's /chat/completions API.
+type ChatResponse struct {
 	ID      string   `json:"id"`      // unique completion ID
 	Object  string   `json:"object"`  // usually "chat.completion"
 	Created int64    `json:"created"` // unix timestamp (seconds)
