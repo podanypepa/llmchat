@@ -3,8 +3,8 @@ package gemini
 
 import "errors"
 
-// GenerateContentRequest represents a request to Gemini API.
-type GenerateContentRequest struct {
+// ChatRequest represents a request to Gemini API.
+type ChatRequest struct {
 	// One or more content blocks (conversation turns).
 	Contents []Content `json:"contents"`
 

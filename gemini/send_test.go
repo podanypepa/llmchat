@@ -14,7 +14,7 @@ func TestSend(t *testing.T) {
 	assert.NoError(t, err)
 	assert.NotNil(t, client)
 
-	req := &GenerateContentRequest{
+	req := &ChatRequest{
 		Contents: []Content{
 			{
 				Role: "user",

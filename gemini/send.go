@@ -11,7 +11,7 @@ import (
 )
 
 // Send sends a chat request to the ChatGPT API and returns the response.
-func (c *Client) Send(ctx context.Context, req *GenerateContentRequest) (*GenerateContentResponse, error) {
+func (c *Client) Send(ctx context.Context, req *ChatRequest) (*GenerateContentResponse, error) {
 	reqBytes, err := json.Marshal(req)
 	if err != nil {
 		return nil, fmt.Errorf("failed to marshal request: %w", err)
