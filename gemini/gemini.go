@@ -51,8 +51,8 @@ type SafetySetting struct {
 	Threshold string `json:"threshold"` // e.g. "BLOCK_MEDIUM_AND_ABOVE"
 }
 
-// GenerateContentResponse is the top-level response from Gemini API.
-type GenerateContentResponse struct {
+// ChatResponse is the top-level response from Gemini API.
+type ChatResponse struct {
 	Candidates     []Candidate     `json:"candidates"`
 	PromptFeedback *PromptFeedback `json:"promptFeedback,omitempty"`
 	UsageMetadata  *UsageMetadata  `json:"usageMetadata,omitempty"`
@@ -87,7 +87,7 @@ type UsageMetadata struct {
 
 // ExtractText returns the text of the first candidate's first part.
 // It will return an error if no candidate or no text is available.
-func (r *GenerateContentResponse) ExtractText() (string, error) {
+func (r *ChatResponse) ExtractText() (string, error) {
 	if r == nil {
 		return "", errors.New("response is nil")
 	}

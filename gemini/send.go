@@ -11,7 +11,7 @@ import (
 )
 
 // Send sends a chat request to the ChatGPT API and returns the response.
-func (c *Client) Send(ctx context.Context, req *ChatRequest) (*GenerateContentResponse, error) {
+func (c *Client) Send(ctx context.Context, req *ChatRequest) (*ChatResponse, error) {
 	reqBytes, err := json.Marshal(req)
 	if err != nil {
 		return nil, fmt.Errorf("failed to marshal request: %w", err)
@@ -55,7 +55,7 @@ func (c *Client) Send(ctx context.Context, req *ChatRequest) (*GenerateContentRe
 		}
 		defer result.resp.Body.Close()
 
-		var chatResponse GenerateContentResponse
+		var chatResponse ChatResponse
 		if err := json.NewDecoder(result.resp.Body).Decode(&chatResponse); err != nil {
 			return nil, fmt.Errorf("failed to decode response: %w", err)
 		}
