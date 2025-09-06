@@ -23,8 +23,8 @@ type ChatMessage struct {
 	Content string `json:"content"` // plain text content
 }
 
-// ChatCompletionResponse represents the response from Grok's /chat/completions API.
-type ChatCompletionResponse struct {
+// ChatResponse represents the response from Grok's /chat/completions API.
+type ChatResponse struct {
 	ID      string   `json:"id"`      // e.g. "chatcmpl-12345"
 	Object  string   `json:"object"`  // e.g. "chat.completion"
 	Created int64    `json:"created"` // unix timestamp
