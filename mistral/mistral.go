@@ -1,8 +1,8 @@
 // Package mistral provides a client for interacting with the Mistral workflow service.
 package mistral
 
-// ChatCompletionRequest represents a request body for Mistral's /chat/completions API.
-type ChatCompletionRequest struct {
+// ChatRequest represents a request body for Mistral's /chat/completions API.
+type ChatRequest struct {
 	Model            string         `json:"model"`                       // e.g. "mistral-7b-instruct", "mixtral-8x7b-instruct", "mistral-small-3.1"
 	Messages         []ChatMessage  `json:"messages"`                    // conversation history
 	MaxTokens        *int           `json:"max_tokens,omitempty"`        // maximum tokens in output
