@@ -1,8 +1,8 @@
 // Package perplexity provides functions to calculate the perplexity of a language model.
 package perplexity
 
-// ChatCompletionRequest represents a request body for Perplexity's /chat/completions API.
-type ChatCompletionRequest struct {
+// ChatRequest represents a request body for Perplexity's /chat/completions API.
+type ChatRequest struct {
 	Model            string         `json:"model"`                       // e.g. "perplexity/sonar", "perplexity/sonar-pro"
 	Messages         []ChatMessage  `json:"messages"`                    // conversation history
 	MaxTokens        *int           `json:"max_tokens,omitempty"`        // maximum output tokens
