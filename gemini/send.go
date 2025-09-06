@@ -6,6 +6,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+
+	"github.com/podanypepa/llmchat/pkg/llmrequest"
 )
 
 // Send sends a chat request to the ChatGPT API and returns the response.
@@ -31,7 +33,7 @@ func (c *Client) Send(ctx context.Context, req *GenerateContentRequest) (*Genera
 	}, 1)
 
 	go func() {
-		resp, err := c.sendRequest(ctx, httpReq)
+		resp, err := llmrequest.SendRequest(ctx, httpReq, map[string]string{"accept": "application/json"})
 		resultChan <- struct {
 			resp *http.Response
 			err  error

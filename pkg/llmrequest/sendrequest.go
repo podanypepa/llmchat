@@ -1,5 +1,5 @@
-// Package internal provides internal utilities for the project.
-package internal
+// Package llmrequest provides functionality to send HTTP requests and handle responses.
+package llmrequest
 
 import (
 	"context"
