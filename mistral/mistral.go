@@ -23,8 +23,8 @@ type ChatMessage struct {
 	Content string `json:"content"` // text content
 }
 
-// ChatCompletionResponse represents the response from Mistral's /chat/completions API.
-type ChatCompletionResponse struct {
+// ChatResponse represents the response from Mistral's /chat/completions API.
+type ChatResponse struct {
 	ID      string   `json:"id"`      // unique identifier for the completion
 	Object  string   `json:"object"`  // usually "chat.completion"
 	Created int64    `json:"created"` // unix timestamp

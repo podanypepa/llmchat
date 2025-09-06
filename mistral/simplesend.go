@@ -3,7 +3,7 @@ package mistral
 import "context"
 
 // SimpleSend is a helper function that sends a simple message to the ChatGPT API
-func (c *Client) SimpleSend(ctx context.Context, message string) (*ChatCompletionResponse, error) {
+func (c *Client) SimpleSend(ctx context.Context, message string) (*ChatResponse, error) {
 	req := &ChatRequest{
 		Model: DefaultModel, // TODO: must be in client config or req
 		Messages: []ChatMessage{
@@ -16,7 +16,7 @@ func (c *Client) SimpleSend(ctx context.Context, message string) (*ChatCompletio
 }
 
 // SimpleSendWithSystem is a helper function that sends a message with a system prompt to the ChatGPT API
-func (c *Client) SimpleSendWithSystem(ctx context.Context, system, message string) (*ChatCompletionResponse, error) {
+func (c *Client) SimpleSendWithSystem(ctx context.Context, system, message string) (*ChatResponse, error) {
 	req := &ChatRequest{
 		Model: DefaultModel, // TODO: must be in client config or req
 		Messages: []ChatMessage{
