@@ -8,8 +8,8 @@ import (
 )
 
 const (
-	// DefaultapiURL is the default base URL for the Mistral API.
-	DefaultapiURL = "https://api.mistral.ai"
+	// DefaultapiURL is the default base URL for the Perplexity API.
+	DefaultapiURL = "https://api.perplexity.ai"
 )
 
 // Client is the ChatGPT API client.
