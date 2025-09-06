@@ -36,6 +36,8 @@ const (
 	RoleUser Role = "user"
 	// RoleAssistant is a message from the assistant (model).
 	RoleAssistant Role = "assistant"
+	// RoleSystem is a system message that sets context or instructions.
+	RoleSystem Role = "system"
 )
 
 // Content can be a string (text) or an array of ContentBlock (text and/or image).
