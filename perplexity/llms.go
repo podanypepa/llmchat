@@ -1,22 +1,17 @@
 package perplexity
 
-// Perplexity (Sonar) model IDs for use with the Perplexity API.
-// These constants represent the internal Sonar model identifiers you can pass to the "model" parameter.
+// Perplexity model IDs (as of September 2025).
 const (
-	// ModelPerplexitySonar is the default model used when none is specified.
-	ModelPerplexitySonar = "perplexity/sonar"
+	// Sonar base models
+	ModelPerplexitySonar    = "sonar"     // default Sonar model
+	ModelPerplexitySonarPro = "sonar-pro" // higher-capacity Sonar
 
-	// ModelPerplexitySonarPro is a higher-capacity Sonar model optimized for real-time reasoning.
-	ModelPerplexitySonarPro = "perplexity/sonar-pro"
+	// Reasoning-focused models
+	ModelPerplexitySonarReasoning    = "sonar-reasoning"     // optimized for reasoning with search
+	ModelPerplexitySonarReasoningPro = "sonar-reasoning-pro" // enhanced reasoning capability
 
-	// ModelPerplexitySonarReasoning is a fast Sonar model tailored for quick reasoning with search.
-	ModelPerplexitySonarReasoning = "perplexity/sonar-reasoning"
-
-	// ModelPerplexitySonarReasoningPro is an enhanced reasoning model with extended capability.
-	ModelPerplexitySonarReasoningPro = "perplexity/sonar-reasoning-pro"
-
-	// ModelPerplexitySonarDeepResearch is the deep-research Sonar model for expert-level, exhaustive analysis.
-	ModelPerplexitySonarDeepResearch = "perplexity/sonar-deep-research"
+	// Deep research model
+	ModelPerplexitySonarDeepResearch = "sonar-deep-research" // expert-level deep research
 )
 
 const (
