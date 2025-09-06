@@ -2,8 +2,8 @@ package anthropic
 
 import "encoding/json"
 
-// Request represents a request to the Messages API.
-type Request struct {
+// ChatRequest represents a request to the Messages API.
+type ChatRequest struct {
 	Model       string       `json:"model"`
 	Messages    []Message    `json:"messages"`
 	MaxTokens   int          `json:"max_tokens,omitempty"`

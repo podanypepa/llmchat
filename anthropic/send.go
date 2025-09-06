@@ -11,7 +11,7 @@ import (
 )
 
 // Send sends a request to the Anthropic API and returns the response.
-func (c *Client) Send(ctx context.Context, req *Request) (*Response, error) {
+func (c *Client) Send(ctx context.Context, req *ChatRequest) (*Response, error) {
 	jsonData, err := json.Marshal(req)
 	if err != nil {
 		return nil, fmt.Errorf("failed to marshal request: %w", err)

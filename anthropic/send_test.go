@@ -15,7 +15,7 @@ func TestSend(t *testing.T) {
 		assert.NoError(t, err)
 		assert.NotNil(t, client)
 
-		req := &Request{
+		req := &ChatRequest{
 			Model:     ModelClaude35Haiku,
 			System:    "You are a helpful assistant.",
 			MaxTokens: 300,
@@ -45,7 +45,7 @@ func TestSend(t *testing.T) {
 		assert.NoError(t, err)
 		assert.NotNil(t, client)
 
-		req := &Request{
+		req := &ChatRequest{
 			Model:     "dasdas",
 			System:    "You are a helpful assistant.",
 			MaxTokens: 300,
