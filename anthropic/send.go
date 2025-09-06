@@ -11,7 +11,7 @@ import (
 )
 
 // Send sends a request to the Anthropic API and returns the response.
-func (c *Client) Send(ctx context.Context, req *ChatRequest) (*Response, error) {
+func (c *Client) Send(ctx context.Context, req *ChatRequest) (*ChatResponse, error) {
 	jsonData, err := json.Marshal(req)
 	if err != nil {
 		return nil, fmt.Errorf("failed to marshal request: %w", err)
@@ -58,7 +58,7 @@ func (c *Client) Send(ctx context.Context, req *ChatRequest) (*Response, error) 
 		}
 		defer result.resp.Body.Close()
 
-		var chatResponse Response
+		var chatResponse ChatResponse
 		if err := json.NewDecoder(result.resp.Body).Decode(&chatResponse); err != nil {
 			return nil, fmt.Errorf("failed to decode response: %w", err)
 		}

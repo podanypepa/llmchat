@@ -144,8 +144,8 @@ type MCPToolConfig struct {
 	AllowedTools []string `json:"allowed_tools,omitempty"`
 }
 
-// Response represents the response from the Messages API.
-type Response struct {
+// ChatResponse represents the response from the Messages API.
+type ChatResponse struct {
 	ID         string           `json:"id"`
 	Type       string           `json:"type"`
 	Role       Role             `json:"role"`
