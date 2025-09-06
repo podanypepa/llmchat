@@ -3,12 +3,10 @@ package chatgpt
 import (
 	"cmp"
 	"fmt"
-	"net/http"
 )
 
 // Client is the ChatGPT API client.
 type Client struct {
-	client *http.Client
 	config *Config
 }
 
@@ -27,7 +25,6 @@ func NewClient(apikey string) (*Client, error) {
 	}
 
 	return &Client{
-		client: &http.Client{},
 		config: &Config{
 			BaseURL:      DefaultapiURL,
 			APIKey:       apikey,
@@ -46,7 +43,6 @@ func NewClientWithConfig(config *Config) (*Client, error) {
 	config.DefaultModel = cmp.Or(config.DefaultModel, DefaultModel)
 
 	return &Client{
-		client: &http.Client{},
 		config: config,
 	}, nil
 }
