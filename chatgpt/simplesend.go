@@ -20,7 +20,7 @@ func (c *Client) SimpleSend(ctx context.Context, message string) (*ChatResponse,
 // SimpleSendWithSystem is a helper function that sends a message with a system prompt to the ChatGPT API
 func (c *Client) SimpleSendWithSystem(ctx context.Context, system, message string) (*ChatResponse, error) {
 	req := &ChatRequest{
-		Model: c.config.DefaultModel,
+		Model: DefaultModel,
 		Messages: []ChatMessage{
 			{
 				Role:    RoleSystem,
@@ -34,9 +34,4 @@ func (c *Client) SimpleSendWithSystem(ctx context.Context, system, message strin
 	}
 
 	return c.Send(ctx, req)
-}
-
-// SetModel sets the default model for the client
-func (c *Client) SetModel(model string) {
-	c.config.DefaultModel = model
 }

@@ -15,7 +15,6 @@ type Config struct {
 	BaseURL        string
 	APIKey         string
 	OrganizationID string
-	DefaultModel   string
 }
 
 // NewClient creates a new Client with the provided API key.
@@ -26,9 +25,8 @@ func NewClient(apikey string) (*Client, error) {
 
 	return &Client{
 		config: &Config{
-			BaseURL:      DefaultapiURL,
-			APIKey:       apikey,
-			DefaultModel: DefaultModel,
+			BaseURL: DefaultapiURL,
+			APIKey:  apikey,
 		},
 	}, nil
 }
@@ -40,7 +38,6 @@ func NewClientWithConfig(config *Config) (*Client, error) {
 	}
 
 	config.BaseURL = cmp.Or(config.BaseURL, DefaultapiURL)
-	config.DefaultModel = cmp.Or(config.DefaultModel, DefaultModel)
 
 	return &Client{
 		config: config,
