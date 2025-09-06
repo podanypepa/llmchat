@@ -38,6 +38,7 @@ func main() {
 	}
 
 	fmt.Println(res.ExtractText())
+    fmt.Println("tokens used:", res.UsageMetadata.TotalTokenCount)
 
 	res, err = c.Send(context.TODO(), &gemini.ChatRequest{
 		SystemInstruction: &gemini.Content{
@@ -60,5 +61,6 @@ func main() {
 	}
 
 	fmt.Println(res.ExtractText())
+    fmt.Println("tokens used:", res.UsageMetadata.TotalTokenCount)
 }
 ```
