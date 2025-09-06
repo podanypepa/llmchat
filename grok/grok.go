@@ -1,8 +1,8 @@
 // Package grok ...
 package grok
 
-// ChatCompletionRequest represents a request body for Grok's /chat/completions API.
-type ChatCompletionRequest struct {
+// ChatRequest represents a request body for Grok's /chat/completions API.
+type ChatRequest struct {
 	Model            string         `json:"model"`                       // e.g. "grok-3", "grok-3-mini", "grok-4", "grok-4-heavy"
 	Messages         []ChatMessage  `json:"messages"`                    // conversation history
 	MaxTokens        *int           `json:"max_tokens,omitempty"`        // maximum tokens in output

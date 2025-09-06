@@ -14,8 +14,8 @@ func TestSend(t *testing.T) {
 	assert.NoError(t, err)
 	assert.NotNil(t, client)
 
-	req := &ChatCompletionRequest{
-		Model: "grok-3",
+	req := &ChatRequest{
+		Model: DefaultModel,
 		Messages: []ChatMessage{
 			{Role: "system", Content: "You are a helpful assistant."},
 			{Role: "user", Content: "Write a haiku about Go concurrency."},
