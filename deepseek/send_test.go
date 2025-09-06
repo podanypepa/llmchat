@@ -14,7 +14,7 @@ func TestSend(t *testing.T) {
 	assert.NoError(t, err)
 	assert.NotNil(t, client)
 
-	req := &ChatCompletionRequest{
+	req := &ChatRequest{
 		Model: ModelDeepSeekChat,
 		Messages: []ChatMessage{
 			{Role: "system", Content: "You are a pirate."},

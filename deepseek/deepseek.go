@@ -1,8 +1,8 @@
 // Package deepseek provides utilities for deep searching within nested data structures.
 package deepseek
 
-// ChatCompletionRequest represents the request body for DeepSeek's /chat/completions endpoint.
-type ChatCompletionRequest struct {
+// ChatRequest represents the request body for DeepSeek's /chat/completions endpoint.
+type ChatRequest struct {
 	Model            string             `json:"model"`                 // e.g. "deepseek-chat", "deepseek-v3.1"
 	Messages         []ChatMessage      `json:"messages"`              // conversation history
 	MaxTokens        *int               `json:"max_tokens,omitempty"`  // optional cap on output tokens
