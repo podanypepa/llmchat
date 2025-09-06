@@ -26,7 +26,7 @@ func NewClient(apikey string, model string) (*Client, error) {
 	}
 
 	if model == "" {
-		return nil, fmt.Errorf("Model is required")
+		return nil, fmt.Errorf("model is required")
 	}
 
 	return &Client{
@@ -45,7 +45,7 @@ func NewClientWithConfig(config *Config) (*Client, error) {
 		return nil, fmt.Errorf("API key is required")
 	}
 	if config.Model == "" {
-		return nil, fmt.Errorf("Model is required")
+		return nil, fmt.Errorf("model is required")
 	}
 
 	config.DefaultModel = cmp.Or(config.DefaultModel, DefaultModel)
