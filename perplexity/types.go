@@ -10,7 +10,7 @@ type ChatRequest struct {
 	TopP             *float64       `json:"top_p,omitempty,omitzero"`             // nucleus sampling
 	N                *int           `json:"n,omitempty,omitzero"`                 // number of completions
 	Stream           bool           `json:"stream,omitempty"`                     // SSE streaming
-	Stop             []string       `json:"stop,omitempty"`                       // stop sequences
+	Stop             []string       `json:"stop,omitempty,omitzero"`              // stop sequences
 	PresencePenalty  *float64       `json:"presence_penalty,omitempty,omitzero"`  // discourage repetition
 	FrequencyPenalty *float64       `json:"frequency_penalty,omitempty,omitzero"` // penalize frequent tokens
 	LogitBias        map[string]int `json:"logit_bias,omitempty,omitzero"`        // bias tokens
