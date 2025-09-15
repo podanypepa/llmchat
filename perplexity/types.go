@@ -14,7 +14,7 @@ type ChatRequest struct {
 	PresencePenalty  *float64       `json:"presence_penalty,omitempty,omitzero"`  // discourage repetition
 	FrequencyPenalty *float64       `json:"frequency_penalty,omitempty,omitzero"` // penalize frequent tokens
 	LogitBias        map[string]int `json:"logit_bias,omitempty,omitzero"`        // bias tokens
-	User             string         `json:"user,omitempty"`                       // unique user identifier
+	User             string         `json:"user,omitempty,omitzero"`              // unique user identifier
 }
 
 // ChatMessage represents a single conversation turn.
