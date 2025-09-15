@@ -5,6 +5,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"log/slog"
 	"net/http"
 
 	"github.com/podanypepa/llmchat/pkg/llmrequest"
@@ -42,6 +43,11 @@ func (c *Client) Send(ctx context.Context, req *ChatRequest) (*ChatResponse, err
 				"Accept":        "application/json",
 			},
 		)
+		if err != nil {
+			var body []byte
+			_, _ = resp.Body.Read(body)
+			slog.Error("perplexity request error", "error", err, "status", resp.StatusCode, "body", string(body))
+		}
 		resultChan <- struct {
 			resp *http.Response
 			err  error
