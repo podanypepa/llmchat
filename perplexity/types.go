@@ -3,18 +3,18 @@ package perplexity
 
 // ChatRequest represents a request body for Perplexity's /chat/completions API.
 type ChatRequest struct {
-	Model            string         `json:"model"`                                // e.g. "perplexity/sonar", "perplexity/sonar-pro"
-	Messages         []ChatMessage  `json:"messages"`                             // conversation history
-	MaxTokens        *int           `json:"max_tokens,omitempty,omitzero"`        // maximum output tokens
-	Temperature      *float64       `json:"temperature,omitempty,omitzero"`       // randomness (default ~1.0)
-	TopP             *float64       `json:"top_p,omitempty,omitzero"`             // nucleus sampling
-	N                *int           `json:"n,omitempty,omitzero"`                 // number of completions
-	Stream           bool           `json:"stream,omitempty"`                     // SSE streaming
-	Stop             []string       `json:"stop,omitempty,omitzero"`              // stop sequences
-	PresencePenalty  *float64       `json:"presence_penalty,omitempty,omitzero"`  // discourage repetition
-	FrequencyPenalty *float64       `json:"frequency_penalty,omitempty,omitzero"` // penalize frequent tokens
-	LogitBias        map[string]int `json:"logit_bias,omitempty,omitzero"`        // bias tokens
-	User             string         `json:"user,omitempty,omitzero"`              // unique user identifier
+	Model            string         `json:"model"`                         // e.g. "perplexity/sonar", "perplexity/sonar-pro"
+	Messages         []ChatMessage  `json:"messages"`                      // conversation history
+	MaxTokens        *int           `json:"max_tokens,omitzero"`           // maximum output tokens
+	Temperature      *float64       `json:"temperature,omitzero"`          // randomness (default ~1.0)
+	TopP             *float64       `json:"top_p,omitzero"`                // nucleus sampling
+	N                *int           `json:"n,omitzero"`                    // number of completions
+	Stream           bool           `json:"stream,omitempty"`              // SSE streaming
+	Stop             []string       `json:"stop,omitempty,omitzero"`       // stop sequences
+	PresencePenalty  *float64       `json:"presence_penalty,omitzero"`     // discourage repetition
+	FrequencyPenalty *float64       `json:"frequency_penalty,omitzero"`    // penalize frequent tokens
+	LogitBias        map[string]int `json:"logit_bias,omitempty,omitzero"` // bias tokens
+	User             string         `json:"user,omitempty"`                // unique user identifier
 }
 
 // ChatMessage represents a single conversation turn.
