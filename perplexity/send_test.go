@@ -18,7 +18,7 @@ func TestSend(t *testing.T) {
 		Model: DefaultModel,
 		Messages: []ChatMessage{
 			{Role: "system", Content: "You are a pirate."},
-			{Role: "user", Content: "Hello!"},
+			{Role: "user", Content: "Jak se jmenuje hlavni mesto CR?"},
 		},
 	}
 
