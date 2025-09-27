@@ -25,7 +25,6 @@ func (c *Client) Send(ctx context.Context, req *ChatRequest) (*ChatResponse, err
 	if err != nil {
 		return nil, fmt.Errorf("failed to create request: %w", err)
 	}
-	httpReq = httpReq.WithContext(ctx)
 
 	resultChan := make(chan struct {
 		resp *http.Response
