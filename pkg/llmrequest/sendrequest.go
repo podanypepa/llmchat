@@ -10,21 +10,14 @@ import (
 
 // SendRequest sends an HTTP request and handles the response.
 func SendRequest(ctx context.Context, req *http.Request, headers map[string]string) (*http.Response, error) {
-	if len(headers) > 0 {
-		for key, value := range headers {
-			req.Header.Set(key, value)
-		}
+	for key, value := range headers {
+		req.Header.Set(key, value)
 	}
 
 	client := &http.Client{}
 	res, err := client.Do(req)
 	if err != nil {
-		select {
-		case <-ctx.Done():
-			return nil, ctx.Err()
-		default:
-			return nil, err
-		}
+		return nil, err
 	}
 
 	if res.StatusCode != http.StatusOK {
