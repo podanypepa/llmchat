@@ -16,9 +16,6 @@ func (c *Client) Send(ctx context.Context, req *ChatRequest) (*ChatResponse, err
 	if err != nil {
 		return nil, fmt.Errorf("failed to marshal request: %w", err)
 	}
-	if reqBytes == nil {
-		return nil, fmt.Errorf("request is empty")
-	}
 
 	url := fmt.Sprintf("https://generativelanguage.googleapis.com/v1beta/models/%s:generateContent?key=%s", c.config.Model, c.config.APIKey)
 	httpReq, err := http.NewRequestWithContext(ctx, "POST", url, bytes.NewBuffer(reqBytes))

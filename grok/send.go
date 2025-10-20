@@ -16,9 +16,6 @@ func (c *Client) Send(ctx context.Context, req *ChatRequest) (*ChatResponse, err
 	if err != nil {
 		return nil, fmt.Errorf("failed to marshal request: %w", err)
 	}
-	if reqBytes == nil {
-		return nil, fmt.Errorf("request is empty")
-	}
 
 	endpoint := "/v1/chat/completions"
 	httpReq, err := http.NewRequestWithContext(ctx, "POST", c.config.BaseURL+endpoint, bytes.NewBuffer(reqBytes))

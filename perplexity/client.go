@@ -40,6 +40,9 @@ func NewClient(apikey string) (*Client, error) {
 
 // NewClientWithConfig creates a new Client with the provided configuration.
 func NewClientWithConfig(config *Config) (*Client, error) {
+	if config == nil {
+		return nil, fmt.Errorf("config is required")
+	}
 	if config.APIKey == "" {
 		return nil, fmt.Errorf("API key is required")
 	}

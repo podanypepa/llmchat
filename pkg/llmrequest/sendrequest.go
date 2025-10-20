@@ -23,10 +23,12 @@ func SendRequest(ctx context.Context, req *http.Request, headers map[string]stri
 	if res.StatusCode != http.StatusOK {
 		defer res.Body.Close()
 		var errMessage any
-		if err := json.NewDecoder(res.Body).Decode(&errMessage); err != nil {
-			return nil, err
+		decodeErr := json.NewDecoder(res.Body).Decode(&errMessage)
+		if decodeErr != nil {
+			return nil, fmt.Errorf("api request failed: status %d %s %s (failed to decode error: %w)",
+				res.StatusCode, res.Status, res.Request.URL, decodeErr)
 		}
-		return nil, fmt.Errorf("api request failed: status Code: %d %s %s Message: %+v",
+		return nil, fmt.Errorf("api request failed: status %d %s %s Message: %+v",
 			res.StatusCode, res.Status, res.Request.URL, errMessage)
 	}
 

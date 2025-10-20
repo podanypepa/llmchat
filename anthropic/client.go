@@ -19,7 +19,7 @@ type Config struct {
 // Client of the Anthropic API.
 type Client struct {
 	apiKey string
-	config Config
+	config *Config
 }
 
 // NewClient creates a new Anthropic API client with the given API key.
@@ -30,17 +30,27 @@ func NewClient(apiKey string) (*Client, error) {
 
 	return &Client{
 		apiKey: apiKey,
-		config: Config{BaseURL: DefaultBaseURL},
+		config: &Config{
+			APIKey:  apiKey,
+			BaseURL: DefaultBaseURL,
+		},
 	}, nil
 }
 
 // NewClientWithConfig creates a new Anthropic API client with the given configuration.
 func NewClientWithConfig(config *Config) (*Client, error) {
+	if config == nil {
+		return nil, fmt.Errorf("config is required")
+	}
 	if config.APIKey == "" {
 		return nil, fmt.Errorf("API key is required")
+	}
+	if config.BaseURL == "" {
+		config.BaseURL = DefaultBaseURL
 	}
 
 	return &Client{
 		apiKey: config.APIKey,
+		config: config,
 	}, nil
 }
