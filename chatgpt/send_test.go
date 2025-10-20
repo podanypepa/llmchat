@@ -14,11 +14,13 @@ func TestSend(t *testing.T) {
 	assert.NoError(t, err)
 	assert.NotNil(t, client)
 
+	system := "You are a pirate."
+	q := "Hello!"
 	req := &ChatRequest{
 		Model: Gpt4OMini,
 		Messages: []ChatMessage{
-			{Role: "system", Content: "You are a pirate."},
-			{Role: "user", Content: "Hello!"},
+			{Role: "system", Content: system},
+			{Role: "user", Content: q},
 		},
 	}
 
@@ -26,6 +28,7 @@ func TestSend(t *testing.T) {
 	assert.NoError(t, err)
 	assert.NotNil(t, resp)
 
+	fmt.Println(q)
 	fmt.Println(resp.Choices[0].Message.Content)
 	fmt.Println("total tokens:", resp.Usage.TotalTokens)
 }
