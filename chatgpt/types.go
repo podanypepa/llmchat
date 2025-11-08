@@ -17,8 +17,8 @@ const (
 
 // ChatMessage represents a message in a chat conversation.
 type ChatMessage struct {
-	Role    string      `json:"role"`
-	Content interface{} `json:"content"`
+	Role    string `json:"role"`
+	Content any    `json:"content"`
 }
 
 // ContentPart represents a part of a multimodal content message.
@@ -65,7 +65,6 @@ type StreamCompletionChoice struct {
 type StreamCompletionDelta struct {
 	Content string `json:"content"`
 }
-
 
 // ChatResponse represents a response from the ChatGPT API.
 type ChatResponse struct {
