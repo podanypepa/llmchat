@@ -120,3 +120,25 @@ type StreamCompletionChoice struct {
 type StreamCompletionDelta struct {
 	Content string `json:"content"`
 }
+
+// ImageRequest represents a request to the DALL-E API for image generation.
+type ImageRequest struct {
+	Model          string            `json:"model"`
+	Prompt         string            `json:"prompt"`
+	N              int               `json:"n,omitempty"`
+	Size           string            `json:"size,omitempty"`
+	ResponseFormat map[string]string `json:"response_format,omitempty"`
+	User           string            `json:"user,omitempty"`
+}
+
+// ImageResponse represents a response from the DALL-E API.
+type ImageResponse struct {
+	Created int64       `json:"created"`
+	Data    []ImageData `json:"data"`
+}
+
+// ImageData contains the generated image data.
+type ImageData struct {
+	B64JSON string `json:"b64_json"`
+	URL     string `json:"url"`
+}
