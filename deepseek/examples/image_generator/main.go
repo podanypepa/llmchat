@@ -1,3 +1,4 @@
+// Package main demonstrates how to generate an image using the OpenAI API
 package main
 
 import (
