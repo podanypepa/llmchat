@@ -109,3 +109,21 @@ func (r *ChatResponse) ExtractText() (string, error) {
 	}
 	return "", errors.New("no text part found in first candidate")
 }
+
+// ImageRequest represents a request to the Imagen API for image generation.
+type ImageRequest struct {
+	Prompt         string `json:"prompt"`
+	ImageCount     int    `json:"image_count,omitempty"`
+	NegativePrompt string `json:"negative_prompt,omitempty"`
+	// ... other parameters like seed, aspect_ratio etc. can be added here.
+}
+
+// ImageResponse represents a response from the Imagen API.
+type ImageResponse struct {
+	Images []ImageInstance `json:"images"`
+}
+
+// ImageInstance contains the generated image data.
+type ImageInstance struct {
+	B64JSON string `json:"b64Json"`
+}
