@@ -1,3 +1,4 @@
+// Package main implements a command-line tool that reads a PDF file,
 package main
 
 import (
