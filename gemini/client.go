@@ -5,6 +5,13 @@ import (
 	"fmt"
 )
 
+const (
+	// DefaultBaseURL is the default base URL for the Gemini API.
+	DefaultBaseURL = "https://generativelanguage.googleapis.com"
+	// DefaultModel is the default model for the Gemini API.
+	DefaultModel = "gemini-pro"
+)
+
 // Client is the ChatGPT API client.
 type Client struct {
 	config *Config
@@ -15,6 +22,7 @@ type Config struct {
 	APIKey       string
 	Model        string
 	DefaultModel string
+	BaseURL      string
 }
 
 // NewClient creates a new Client with the provided API key.
@@ -32,6 +40,7 @@ func NewClient(apikey string, model string) (*Client, error) {
 			APIKey:       apikey,
 			DefaultModel: DefaultModel,
 			Model:        model,
+			BaseURL:      DefaultBaseURL,
 		},
 	}, nil
 }
@@ -49,6 +58,7 @@ func NewClientWithConfig(config *Config) (*Client, error) {
 	}
 
 	config.DefaultModel = cmp.Or(config.DefaultModel, DefaultModel)
+	config.BaseURL = cmp.Or(config.BaseURL, DefaultBaseURL)
 
 	return &Client{
 		config: config,

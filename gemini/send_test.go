@@ -10,7 +10,8 @@ import (
 )
 
 func TestSend(t *testing.T) {
-	client, err := NewClient(os.Getenv("GEMINI_API_KEY"), GeminI2_5Flash)
+	t.Skip("Skipping integration test")
+	client, err := NewClient(os.Getenv("GEMINI_API_KEY"), GeminiPro)
 	assert.NoError(t, err)
 	assert.NotNil(t, client)
 

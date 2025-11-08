@@ -5,6 +5,10 @@ import (
 	"testing"
 )
 
+const (
+	DefaultModel = "gemini-pro"
+)
+
 func TestNewClient(t *testing.T) {
 	type args struct {
 		apikey string
@@ -31,7 +35,7 @@ func TestNewClient(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := NewClient(tt.args.apikey, GeminI2_5Pro)
+			got, err := NewClient(tt.args.apikey, GeminiPro)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("NewClient() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -57,6 +61,7 @@ func TestNewClientWithConfig(t *testing.T) {
 			args: args{
 				config: &Config{
 					APIKey: "",
+					Model:  DefaultModel,
 				},
 			},
 			wantErr: true,
@@ -66,6 +71,7 @@ func TestNewClientWithConfig(t *testing.T) {
 			args: args{
 				config: &Config{
 					APIKey: os.Getenv("DEEPSEEK_API_KEY"),
+					Model:  DefaultModel,
 				},
 			},
 			wantErr: false,
