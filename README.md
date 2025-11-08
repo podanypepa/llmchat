@@ -13,6 +13,12 @@
 
 ---
 
+## ⚡ Streaming Support
+
+All supported LLM providers (Anthropic, OpenAI/ChatGPT, Gemini, Mistral, Perplexity, DeepSeek, and Grok) now offer streaming functionality, allowing for real-time, incremental responses.
+
+---
+
 ## 👨‍💻 Quick Start
 
 ```go
@@ -27,7 +33,7 @@ import (
 )
 
 func main() {
-	c, err := gemini.NewClient(os.Getenv("GEMINI_API_KEY"), gemini.GeminI2_5Pro)
+	c, err := gemini.NewClient(os.Getenv("GEMINI_API_KEY"), gemini.GeminiPro)
 	if err != nil {
 		panic(err)
 	}
