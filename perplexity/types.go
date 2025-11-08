@@ -19,8 +19,8 @@ type ChatRequest struct {
 
 // ChatMessage represents a single conversation turn.
 type ChatMessage struct {
-	Role    string      `json:"role"`    // "system" | "user" | "assistant" | "tool"
-	Content interface{} `json:"content"` // plain text content
+	Role    string `json:"role"`    // "system" | "user" | "assistant" | "tool"
+	Content any    `json:"content"` // plain text content
 }
 
 // ContentPart represents a part of a multimodal content message.
@@ -80,4 +80,3 @@ type StreamCompletionChoice struct {
 type StreamCompletionDelta struct {
 	Content string `json:"content"`
 }
-
