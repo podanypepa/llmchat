@@ -5,10 +5,6 @@ import (
 	"testing"
 )
 
-const (
-	DefaultModel = "gemini-pro"
-)
-
 func TestNewClient(t *testing.T) {
 	type args struct {
 		apikey string
