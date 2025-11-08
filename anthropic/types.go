@@ -172,3 +172,36 @@ type AssistantBlock struct {
 	ToolName  string          `json:"name,omitempty"`
 	ToolInput json.RawMessage `json:"input,omitempty"`
 }
+
+// StreamEvent represents a single event in a streamed response.
+type StreamEvent struct {
+	Type         string             `json:"type"`
+	Message      MessageStream      `json:"message,omitempty"`
+	Index        int                `json:"index,omitempty"`
+	ContentBlock ContentBlockStream `json:"content_block,omitempty"`
+	Delta        Delta              `json:"delta,omitempty"`
+}
+
+// MessageStream represents the message data in a stream event.
+type MessageStream struct {
+	ID           string `json:"id"`
+	Type         string `json:"type"`
+	Role         Role   `json:"role"`
+	Model        string `json:"model"`
+	StopReason   string `json:"stop_reason"`
+	StopSequence string `json:"stop_sequence"`
+	Usage        Usage  `json:"usage"`
+}
+
+// ContentBlockStream represents the content block data in a stream event.
+type ContentBlockStream struct {
+	Type string `json:"type"`
+	Text string `json:"text"`
+}
+
+// Delta represents the delta data in a content_block_delta event.
+type Delta struct {
+	Type string `json:"type"`
+	Text string `json:"text"`
+}
+
