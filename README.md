@@ -19,6 +19,12 @@ All supported LLM providers (Anthropic, OpenAI/ChatGPT, Gemini, Mistral, Perplex
 
 ---
 
+## 📚 Examples
+
+Each provider now includes an example application (`examples/pdf_sender`) that demonstrates how to analyze the content of a PDF file using its respective LLM model. This allows you to easily integrate PDF summarization or analysis into your Go applications.
+
+---
+
 ## 👨‍💻 Quick Start
 
 ```go
