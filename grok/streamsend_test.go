@@ -22,7 +22,7 @@ data: {"id":"chatcmpl-123","object":"chat.completion.chunk","created":1694268190
 
 data: [DONE]
 `
-		w.Write([]byte(data))
+		_, _ = w.Write([]byte(data))
 	}))
 	defer server.Close()
 
