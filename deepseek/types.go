@@ -18,8 +18,21 @@ type ChatRequest struct {
 
 // ChatMessage represents one role/content message in the conversation.
 type ChatMessage struct {
-	Role    string `json:"role"`    // "system" | "user" | "assistant" | "tool"
-	Content string `json:"content"` // message text
+	Role    string      `json:"role"`    // "system" | "user" | "assistant" | "tool"
+	Content interface{} `json:"content"` // message text
+}
+
+// ContentPart represents a part of a multimodal content message.
+type ContentPart struct {
+	Type     string    `json:"type"`
+	Text     string    `json:"text,omitempty"`
+	ImageURL *ImageURL `json:"image_url,omitempty"`
+}
+
+// ImageURL represents the URL of an image in a content part.
+type ImageURL struct {
+	URL    string `json:"url"`
+	Detail string `json:"detail,omitempty"`
 }
 
 // ReasoningRequest represents a request body for DeepSeek reasoning models (R1 family).
