@@ -176,10 +176,10 @@ type AssistantBlock struct {
 // StreamEvent represents a single event in a streamed response.
 type StreamEvent struct {
 	Type         string             `json:"type"`
-	Message      MessageStream      `json:"message,omitempty"`
+	Message      MessageStream      `json:"message"`
 	Index        int                `json:"index,omitempty"`
-	ContentBlock ContentBlockStream `json:"content_block,omitempty"`
-	Delta        Delta              `json:"delta,omitempty"`
+	ContentBlock ContentBlockStream `json:"content_block"`
+	Delta        Delta              `json:"delta"`
 }
 
 // MessageStream represents the message data in a stream event.
@@ -204,4 +204,3 @@ type Delta struct {
 	Type string `json:"type"`
 	Text string `json:"text"`
 }
-
