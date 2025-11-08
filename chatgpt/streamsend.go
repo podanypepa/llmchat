@@ -57,8 +57,6 @@ func (c *Client) StreamSend(ctx context.Context, req *ChatRequest) (<-chan Strea
 				}
 				var chunk StreamCompletionChunk
 				if err := json.Unmarshal([]byte(line[6:]), &chunk); err != nil {
-					// In case of an error, we can choose to log it and continue or stop.
-					// For now, let's just print it and see what happens.
 					fmt.Printf("Error unmarshalling chunk: %v\n", err)
 					continue
 				}
@@ -66,7 +64,6 @@ func (c *Client) StreamSend(ctx context.Context, req *ChatRequest) (<-chan Strea
 			}
 		}
 		if err := scanner.Err(); err != nil {
-			// Handle scanner error
 			fmt.Printf("Scanner error: %v\n", err)
 		}
 	}()
