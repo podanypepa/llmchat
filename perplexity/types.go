@@ -46,3 +46,25 @@ type Usage struct {
 	CompletionTokens int `json:"completion_tokens"`
 	TotalTokens      int `json:"total_tokens"`
 }
+
+// StreamCompletionChunk is a single chunk of a streamed completion.
+type StreamCompletionChunk struct {
+	ID      string                   `json:"id"`
+	Object  string                   `json:"object"`
+	Created int64                    `json:"created"`
+	Model   string                   `json:"model"`
+	Choices []StreamCompletionChoice `json:"choices"`
+}
+
+// StreamCompletionChoice is a single choice in a streamed completion.
+type StreamCompletionChoice struct {
+	Index        int                   `json:"index"`
+	Delta        StreamCompletionDelta `json:"delta"`
+	FinishReason string                `json:"finish_reason"`
+}
+
+// StreamCompletionDelta is the delta of a streamed completion.
+type StreamCompletionDelta struct {
+	Content string `json:"content"`
+}
+
