@@ -1,3 +1,4 @@
+// Package main implements a command-line tool that reads a PDF file,
 package main
 
 import (
@@ -16,7 +17,7 @@ func main() {
 		os.Exit(1)
 	}
 
-pdfPath := os.Args[1]
+	pdfPath := os.Args[1]
 
 	// Open and read the PDF file
 	file, err := pdf.Open(pdfPath)

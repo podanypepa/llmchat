@@ -9,7 +9,7 @@ import (
 )
 
 // SendRequest sends an HTTP request and handles the response.
-func SendRequest(ctx context.Context, req *http.Request, headers map[string]string) (*http.Response, error) {
+func SendRequest(_ context.Context, req *http.Request, headers map[string]string) (*http.Response, error) {
 	for key, value := range headers {
 		req.Header.Set(key, value)
 	}
