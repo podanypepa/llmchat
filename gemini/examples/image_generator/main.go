@@ -3,11 +3,11 @@ package main
 
 import (
 	"context"
-	"encoding/base64"
 	"fmt"
 	"os"
 
 	"github.com/podanypepa/llmchat/gemini"
+	"github.com/podanypepa/llmchat/pkg/imagetools"
 )
 
 func main() {
@@ -38,7 +38,7 @@ func main() {
 	// Process the response and save the image.
 	if len(resp.Images) > 0 && resp.Images[0].B64JSON != "" {
 		fmt.Println("Image generated successfully. Saving to disk...")
-		err := saveImage(resp.Images[0].B64JSON, "gemini_generated_image.png")
+		err := imagetools.SaveImage(resp.Images[0].B64JSON, "gemini_generated_image.png")
 		if err != nil {
 			fmt.Printf("Error saving image: %v\n", err)
 			os.Exit(1)
@@ -47,19 +47,4 @@ func main() {
 	} else {
 		fmt.Println("No image data found in the response.")
 	}
-}
-
-// saveImage decodes a base64 string and saves it as an image file.
-func saveImage(base64Data, filename string) error {
-	data, err := base64.StdEncoding.DecodeString(base64Data)
-	if err != nil {
-		return fmt.Errorf("error decoding base64 data: %w", err)
-	}
-
-	err = os.WriteFile(filename, data, 0644)
-	if err != nil {
-		return fmt.Errorf("error writing file: %w", err)
-	}
-
-	return nil
 }
