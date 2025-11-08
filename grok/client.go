@@ -53,3 +53,8 @@ func NewClientWithConfig(config *Config) (*Client, error) {
 		config: config,
 	}, nil
 }
+
+// Ptr returns a pointer to the given integer.
+func Ptr(i int) *int {
+	return &i
+}
