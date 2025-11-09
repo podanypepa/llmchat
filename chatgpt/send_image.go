@@ -10,18 +10,16 @@ import (
 	"github.com/podanypepa/llmchat/pkg/llmrequest"
 )
 
-// Send sends a chat request to the ChatGPT API and returns the response.
-func (c *Client) Send(ctx context.Context, req *ChatRequest) (*ChatResponse, error) {
-	if err := validate(req); err != nil {
-		return nil, fmt.Errorf("invalid request: %w", err)
-	}
+// SendImageRequest sends an image generation request to the DALL-E API and returns the response.
+func (c *Client) SendImageRequest(ctx context.Context, req ImageRequest) (*ImageResponse, error) {
+	// Validation for image request can be added here if needed.
 
 	reqBytes, err := json.Marshal(req)
 	if err != nil {
 		return nil, fmt.Errorf("failed to marshal request: %w", err)
 	}
 
-	endpoint := "/chat/completions"
+	endpoint := "/images/generations"
 	httpReq, err := http.NewRequestWithContext(ctx, "POST", c.config.BaseURL+endpoint, bytes.NewBuffer(reqBytes))
 	if err != nil {
 		return nil, fmt.Errorf("failed to create request: %w", err)
@@ -42,9 +40,9 @@ func (c *Client) Send(ctx context.Context, req *ChatRequest) (*ChatResponse, err
 	}
 	defer resp.Body.Close()
 
-	var chatResponse ChatResponse
-	if err := json.NewDecoder(resp.Body).Decode(&chatResponse); err != nil {
+	var imageResponse ImageResponse
+	if err := json.NewDecoder(resp.Body).Decode(&imageResponse); err != nil {
 		return nil, fmt.Errorf("failed to decode response: %w", err)
 	}
-	return &chatResponse, nil
+	return &imageResponse, nil
 }
