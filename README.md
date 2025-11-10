@@ -42,6 +42,54 @@ This repository includes various example applications to help you get started wi
 
 ## 👨‍💻 Quick Start
 
+## 🌐 Using the `llm` Interface
+
+## 👨‍💻 Quick Start
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+
+	"github.com/podanypepa/llmchat/gemini"
+)
+
+func main() {
+	c, err := gemini.NewClient(os.Getenv("GEMINI_API_KEY"), gemini.GeminiPro)
+	if err != nil {
+		panic(err)
+	}
+
+	res, err := c.Send(context.TODO(), &gemini.ChatRequest{
+		SystemInstruction: &gemini.Content{
+			Role: "user",
+			Parts: []gemini.Part{
+				{Text: "You are hacker."},
+			},
+		},
+		Contents: []gemini.Content{
+			{
+				Role: "user",
+				Parts: []gemini.Part{
+					{Text: "Write a python script that prints 'Hello World!'"},
+				},
+			},
+		},
+	})
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Println(res.ExtractText())
+    fmt.Println("tokens used:", res.UsageMetadata.TotalTokenCount)
+}
+```
+
+## 🌐 Using the `llm` Interface
+
 ```go
 package main
 
