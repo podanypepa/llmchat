@@ -59,15 +59,7 @@ func main() {
 		panic(err)
 	}
 
-	res, err := c.SimpleSend(context.TODO(), "Hello World!")
-	if err != nil {
-		panic(err)
-	}
-
-	fmt.Println(res.ExtractText())
-    fmt.Println("tokens used:", res.UsageMetadata.TotalTokenCount)
-
-	res, err = c.Send(context.TODO(), &gemini.ChatRequest{
+	res, err := c.Send(context.TODO(), &gemini.ChatRequest{
 		SystemInstruction: &gemini.Content{
 			Role: "user",
 			Parts: []gemini.Part{

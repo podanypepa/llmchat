@@ -17,12 +17,27 @@ func main() {
 		panic(err)
 	}
 
-	res, err := c.SimpleSend(context.TODO(), "Hello World!")
+	req := &gemini.ChatRequest{
+		Contents: []gemini.Content{
+			{
+				Role: "user",
+				Parts: []gemini.Part{
+					{Text: "Hello!"},
+				},
+			},
+		},
+	}
+
+	res, err := c.Send(context.TODO(), req)
 	if err != nil {
 		panic(err)
 	}
 
-	fmt.Println(res.ExtractText())
+	text, err := res.ExtractText()
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(text)
 	fmt.Println("tokens used:", res.UsageMetadata.TotalTokenCount)
 }
 ```
