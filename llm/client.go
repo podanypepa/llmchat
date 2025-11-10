@@ -1,3 +1,4 @@
+// Package llm defines the interface for LLM clients.
 package llm
 
 import "context"
