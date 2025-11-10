@@ -10,8 +10,7 @@ import (
 	"github.com/podanypepa/llmchat/pkg/llmrequest"
 )
 
-// Send sends a chat request to the ChatGPT API and returns the response.
-func (c *Client) Send(ctx context.Context, req *ChatRequest) (*ChatResponse, error) {
+func (c *Client) send(ctx context.Context, req *ChatRequest) (*ChatResponse, error) {
 	reqBytes, err := json.Marshal(req)
 	if err != nil {
 		return nil, fmt.Errorf("failed to marshal request: %w", err)
@@ -28,8 +27,7 @@ func (c *Client) Send(ctx context.Context, req *ChatRequest) (*ChatResponse, err
 		httpReq,
 		map[string]string{
 			"Authorization": fmt.Sprintf("Bearer %s", c.config.APIKey),
-			"content-type":  "application/json",
-			"accept":        "application/json",
+			"Content-Type":  "application/json",
 		},
 	)
 	if err != nil {

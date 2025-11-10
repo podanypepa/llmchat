@@ -4,68 +4,45 @@ package main
 import (
 	"context"
 	"fmt"
+	"log"
 	"os"
-	"strings"
 
 	"github.com/podanypepa/llmchat/chatgpt"
-	"rsc.io/pdf" // You need to install this dependency: go get rsc.io/pdf
+	"github.com/podanypepa/llmchat/llm"
+	"github.com/podanypepa/llmchat/pkg/pdftools"
 )
 
 func main() {
 	if len(os.Args) < 2 {
-		fmt.Println("Please provide a path to a PDF file.")
-		os.Exit(1)
+		log.Fatal("Please provide a path to a PDF file.")
 	}
-
 	pdfPath := os.Args[1]
 
-	// Open and read the PDF file
-	file, err := pdf.Open(pdfPath)
+	text, err := pdftools.ReadPdf(pdfPath)
 	if err != nil {
-		panic(fmt.Errorf("failed to open PDF file: %w", err))
-	}
-
-	var content strings.Builder
-	for i := 1; i <= file.NumPage(); i++ {
-		page := file.Page(i)
-		if page.V.IsNull() {
-			continue
-		}
-		texts := page.Content().Text
-		for _, text := range texts {
-			content.WriteString(text.S)
-		}
-		content.WriteString("\n")
+		log.Fatalf("failed to read PDF: %v", err)
 	}
 
 	c, err := chatgpt.NewClient(os.Getenv("OPENAI_API_KEY"))
 	if err != nil {
-		panic(err)
+		log.Fatalf("failed to create client: %v", err)
 	}
 
-	req := &chatgpt.ChatRequest{
-		Model: chatgpt.Gpt4O,
-		Messages: []chatgpt.ChatMessage{
-			{
-				Role:    "system",
-				Content: "You are an assistant that summarizes PDF documents.",
-			},
+	req := &llm.Request{
+		Model: "gpt-4o",
+		Messages: []llm.ChatMessage{
 			{
 				Role:    "user",
-				Content: fmt.Sprintf("Please summarize the following document:\n\n%s", content.String()),
+				Content: fmt.Sprintf("what is in the pdf file? '%s'", string(text)),
 			},
 		},
-		MaxTokens: 1024,
 	}
 
-	res, err := c.Send(context.TODO(), req)
+	res, err := llm.Send(context.TODO(), c, req)
 	if err != nil {
 		panic(err)
 	}
 
-	if responseContent, ok := res.Choices[0].Message.Content.(string); ok {
-		fmt.Println("Summary:")
-		fmt.Println(responseContent)
-	}
-	fmt.Println("\nTokens used:", res.Usage.TotalTokens)
+	fmt.Println(res.Content)
+	fmt.Println("tokens used:", res.Metadata.Usage.TotalTokens)
 }

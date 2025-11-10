@@ -11,8 +11,7 @@ import (
 	"github.com/podanypepa/llmchat/pkg/llmrequest"
 )
 
-// StreamSend sends a chat request to the DeepSeek API and returns a channel of stream completion chunks.
-func (c *Client) StreamSend(ctx context.Context, req *ChatRequest) (<-chan StreamCompletionChunk, error) {
+func (c *Client) streamSend(ctx context.Context, req *ChatRequest) (<-chan StreamCompletionChunk, error) {
 	req.Stream = true
 
 	reqBytes, err := json.Marshal(req)

@@ -11,7 +11,7 @@ import (
 )
 
 // Send sends a request to the Anthropic API and returns the response.
-func (c *Client) Send(ctx context.Context, req *ChatRequest) (*ChatResponse, error) {
+func (c *Client) send(ctx context.Context, req *ChatRequest) (*ChatResponse, error) {
 	if err := validate(req); err != nil {
 		return nil, fmt.Errorf("invalid anthropic chat request: %w", err)
 	}

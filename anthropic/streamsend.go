@@ -13,7 +13,7 @@ import (
 )
 
 // StreamSend sends a request to the Anthropic API and returns a channel of stream events.
-func (c *Client) StreamSend(ctx context.Context, req *ChatRequest) (<-chan StreamEvent, error) {
+func (c *Client) streamSend(ctx context.Context, req *ChatRequest) (<-chan StreamEvent, error) {
 	if err := validate(req); err != nil {
 		return nil, fmt.Errorf("invalid anthropic chat request: %w", err)
 	}

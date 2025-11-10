@@ -1,71 +1,36 @@
-// Package main implements a command-line tool that reads a PDF file,
 package main
 
 import (
 	"context"
 	"fmt"
+	"log"
 	"os"
-	"strings"
 
 	"github.com/podanypepa/llmchat/grok"
-	"rsc.io/pdf" // You need to install this dependency: go get rsc.io/pdf
+	"github.com/podanypepa/llmchat/llm"
 )
 
 func main() {
-	if len(os.Args) < 2 {
-		fmt.Println("Please provide a path to a PDF file.")
-		os.Exit(1)
-	}
-
-	pdfPath := os.Args[1]
-
-	// Open and read the PDF file
-	file, err := pdf.Open(pdfPath)
+	client, err := grok.NewClient(os.Getenv("GROK_API_KEY"))
 	if err != nil {
-		panic(fmt.Errorf("failed to open PDF file: %w", err))
+		log.Fatalf("failed to create client: %v", err)
 	}
 
-	var content strings.Builder
-	for i := 1; i <= file.NumPage(); i++ {
-		page := file.Page(i)
-		if page.V.IsNull() {
-			continue
-		}
-		texts := page.Content().Text
-		for _, text := range texts {
-			content.WriteString(text.S)
-		}
-		content.WriteString("\n")
-	}
-
-	c, err := grok.NewClient(os.Getenv("XAI_API_KEY"))
-	if err != nil {
-		panic(err)
-	}
-
-	req := &grok.ChatRequest{
-		Model: grok.ModelGrok4,
-		Messages: []grok.ChatMessage{
-			{
-				Role:    "system",
-				Content: "You are an assistant that summarizes PDF documents.",
-			},
+	req := &llm.Request{
+		Model: grok.ModelGrok1,
+		Messages: []llm.ChatMessage{
 			{
 				Role:    "user",
-				Content: fmt.Sprintf("Please summarize the following document:\n\n%s", content.String()),
+				Content: "Write a short story about a brave knight.",
 			},
 		},
-		MaxTokens: grok.Ptr(1024),
 	}
 
-	res, err := c.Send(context.TODO(), req)
+	resp, err := client.Send(context.Background(), req)
 	if err != nil {
-		panic(err)
+		log.Fatalf("failed to send message: %v", err)
 	}
 
-	if responseContent, ok := res.Choices[0].Message.Content.(string); ok {
-		fmt.Println("Summary:")
-		fmt.Println(responseContent)
-	}
-	fmt.Println("\nTokens used:", res.Usage.TotalTokens)
+	fmt.Println("Response:", resp.Content)
+	fmt.Printf("Usage: %+v\n", resp.Metadata.Usage)
 }

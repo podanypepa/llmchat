@@ -11,7 +11,7 @@ import (
 )
 
 // Send sends a chat request to the Ollama API and returns the response.
-func (c *Client) Send(ctx context.Context, req *ChatRequest) (*ChatResponse, error) {
+func (c *Client) send(ctx context.Context, req *ChatRequest) (*ChatResponse, error) {
 	req.Stream = false
 	reqBytes, err := json.Marshal(req)
 	if err != nil {

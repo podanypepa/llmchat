@@ -13,8 +13,12 @@ func validate(r *ChatRequest) error {
 		if msg.Role == "" {
 			return fmt.Errorf("message %d: role is required", i)
 		}
-		if msg.Content == "" {
+		if msg.Content == nil {
 			return fmt.Errorf("message %d: content is required", i)
+		}
+		// Also check for empty string if content is of type string
+		if contentStr, ok := msg.Content.(string); ok && contentStr == "" {
+			return fmt.Errorf("message %d: content cannot be an empty string", i)
 		}
 	}
 	return nil

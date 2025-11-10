@@ -11,7 +11,7 @@ import (
 )
 
 // Send sends a chat completion request to the Mistral API and returns the response.
-func (c *Client) Send(ctx context.Context, req *ChatRequest) (*ChatResponse, error) {
+func (c *Client) send(ctx context.Context, req *ChatRequest) (*ChatResponse, error) {
 	reqBytes, err := json.Marshal(req)
 	if err != nil {
 		return nil, fmt.Errorf("failed to marshal request: %w", err)

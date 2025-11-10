@@ -12,7 +12,7 @@ import (
 )
 
 // StreamSend sends a chat request to the ChatGPT API and returns a channel of stream completion chunks.
-func (c *Client) StreamSend(ctx context.Context, req *ChatRequest) (<-chan StreamCompletionChunk, error) {
+func (c *Client) streamSend(ctx context.Context, req *ChatRequest) (<-chan StreamCompletionChunk, error) {
 	if err := validate(req); err != nil {
 		return nil, fmt.Errorf("invalid request: %w", err)
 	}

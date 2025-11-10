@@ -12,8 +12,7 @@ import (
 	"github.com/podanypepa/llmchat/pkg/llmrequest"
 )
 
-// StreamSend sends a chat request to the Gemini API and returns a channel of chat responses.
-func (c *Client) StreamSend(ctx context.Context, req *ChatRequest) (<-chan ChatResponse, error) {
+func (c *Client) streamSend(ctx context.Context, req *ChatRequest) (<-chan ChatResponse, error) {
 	reqBytes, err := json.Marshal(req)
 	if err != nil {
 		return nil, fmt.Errorf("failed to marshal request: %w", err)
@@ -51,7 +50,7 @@ func (c *Client) StreamSend(ctx context.Context, req *ChatRequest) (<-chan ChatR
 					fmt.Printf("Error unmarshalling chunk: %v\n", err)
 					continue
 				}
-				ch <- chatResponse
+			ch <- chatResponse
 			}
 		}
 		if err := scanner.Err(); err != nil {
