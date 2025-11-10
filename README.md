@@ -51,35 +51,34 @@ import (
 	"os"
 
 	"github.com/podanypepa/llmchat/gemini"
+	"github.com/podanypepa/llmchat/llm"
 )
 
 func main() {
-	c, err := gemini.NewClient(os.Getenv("GEMINI_API_KEY"), gemini.GeminiPro)
+	// Initialize a Gemini client
+	geminiClient, err := gemini.NewClient(os.Getenv("GEMINI_API_KEY"), gemini.GeminiPro)
 	if err != nil {
 		panic(err)
 	}
 
-	res, err := c.Send(context.TODO(), &gemini.ChatRequest{
-		SystemInstruction: &gemini.Content{
-			Role: "user",
-			Parts: []gemini.Part{
-				{Text: "You are hacker."},
-			},
+	// Wrap the Gemini client with the generic llm.Client interface
+	var client llm.Client = &gemini.Adapter{Client: geminiClient}
+
+	// Create a generic llm.Request
+	req := &llm.Request{
+		Model: "gemini-pro", // Specify the model
+		Messages: []llm.ChatMessage{
+			{Role: "user", Content: "What is the capital of France?"},
 		},
-		Contents: []gemini.Content{
-			{
-				Role: "user",
-				Parts: []gemini.Part{
-					{Text: "Write a python script that prints 'Hello World!'"},
-				},
-			},
-		},
-	})
+	}
+
+	// Send the request using the generic llm.Client
+	res, err := client.Send(context.TODO(), req)
 	if err != nil {
 		panic(err)
 	}
 
-	fmt.Println(res.ExtractText())
-    fmt.Println("tokens used:", res.UsageMetadata.TotalTokenCount)
+	fmt.Println(res.Content)
+	fmt.Println("tokens used:", res.Metadata.Usage.TotalTokens)
 }
 ```
