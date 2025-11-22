@@ -1,6 +1,15 @@
 package chatgpt
 
+// Model constants
+// https://platform.openai.com/docs/models
+
 const (
+	// ChatGpt40 is the latest chat-optimized version of GPT-4o.
+	// https://platform.openai.com/docs/models/chatgpt-4o-latest
+	ChatGpt40 = "chatgpt-4o-latest"
+	// Gpt5chat is the latest chat-optimized version of GPT-5.
+	// https://platform.openai.com/docs/models/gpt-5-chat-latest
+	Gpt5chat = "gpt-5-chat-latest"
 	// Chat5_1 is an alias for the GPT-5.1 model.
 	// https://platform.openai.com/docs/models/gpt-5.1
 	Chat5_1 = "gpt-5.1"
