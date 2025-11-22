@@ -1,11 +1,17 @@
 package chatgpt
 
 const (
+	// Chat5_1 is an alias for the GPT-5.1 model.
+	// https://platform.openai.com/docs/models/gpt-5.1
+	Chat5_1 = "gpt-5.1"
 	// Gpt5 is the latest and most capable model.
+	// https://platform.openai.com/docs/models/gpt-5
 	Gpt5 = "gpt-5"
 	// Gpt5mini is a smaller and faster version of Gpt5.
+	// https://platform.openai.com/docs/models/gpt-5-mini
 	Gpt5mini = "gpt-5-mini"
 	// Gpt5nano is the smallest and fastest version of Gpt5.
+	// https://platform.openai.com/docs/models/gpt-5-nano
 	Gpt5nano = "gpt-5-nano"
 	// Gpt4_1 is an advanced version of Gpt4 with improved capabilities.
 	Gpt4_1 = "gpt-4.1"
