@@ -1,3 +1,4 @@
+// Package pdftools provides utilities for working with PDF files.
 package pdftools
 
 import (
