@@ -1,3 +1,4 @@
+// Package main demonstrates how to use the Perplexity LLM client
 package main
 
 import (
@@ -6,8 +7,8 @@ import (
 	"log"
 	"os"
 
-	"github.com/podanypepa/llmchat/perplexity"
 	"github.com/podanypepa/llmchat/llm"
+	"github.com/podanypepa/llmchat/perplexity"
 )
 
 func main() {

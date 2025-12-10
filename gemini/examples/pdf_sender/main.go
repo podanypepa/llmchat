@@ -1,3 +1,4 @@
+// A simple example demonstrating how to use the Gemini LLM client
 package main
 
 import (

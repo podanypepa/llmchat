@@ -1,3 +1,4 @@
+// Package main demonstrates how to use the DeepSeek LLM client to send a chat message
 package main
 
 import (
