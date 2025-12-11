@@ -110,25 +110,3 @@ type ImageData struct {
 	B64JSON string `json:"b64_json"`
 	URL     string `json:"url"`
 }
-
-// ResponsesRequest represents a request to the Responses API.
-type ResponsesRequest struct {
-	Model  string `json:"model"`
-	Input  any    `json:"input"`
-	Tools  any    `json:"tools,omitempty"`
-	Stream bool   `json:"stream,omitempty"`
-}
-
-// ResponsesResponse represents a response from the Responses API.
-type ResponsesResponse struct {
-	ID      string          `json:"id"`
-	Object  string          `json:"object"`
-	Created int64           `json:"created"`
-	Output  ResponsesOutput `json:"output"`
-	Usage   any             `json:"usage"`
-}
-
-// ResponsesOutput represents the output of a Responses API response.
-type ResponsesOutput struct {
-	Content any `json:"content"`
-}

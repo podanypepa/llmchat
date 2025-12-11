@@ -5,43 +5,67 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"io"
 	"net/http"
-
-	"github.com/podanypepa/llmchat/pkg/llmrequest"
+	"os"
+	"time"
 )
 
 // Responses sends a request to the Responses API and returns the response.
 // API specification: api.openai.com/v1/responses
-func (c *Client) Responses(ctx context.Context, req *ResponsesRequest) (*ResponsesResponse, error) {
-	reqBytes, err := json.Marshal(req)
+func (c *Client) Responses(
+	ctx context.Context,
+	req *ResponsesRequest,
+) (
+	*ResponsesResponse,
+	error,
+) {
+	b, err := json.Marshal(req)
 	if err != nil {
-		return nil, fmt.Errorf("failed to marshal request: %w", err)
+		return nil, fmt.Errorf("Responses: marshal request error: %w", err)
 	}
 
-	endpoint := "/responses"
-	httpReq, err := http.NewRequestWithContext(ctx, "POST", c.config.BaseURL+endpoint, bytes.NewBuffer(reqBytes))
+	httpReq, err := http.NewRequestWithContext(
+		ctx,
+		http.MethodPost,
+		"https://api.openai.com/v1/responses",
+		bytes.NewReader(b),
+	)
 	if err != nil {
-		return nil, fmt.Errorf("failed to create request: %w", err)
+		return nil, fmt.Errorf("Responses: create http request error: %w", err)
 	}
 
-	headers := map[string]string{
-		"Authorization": fmt.Sprintf("Bearer %s", c.config.APIKey),
-		"Content-Type":  "application/json",
-		"Accept":        "application/json",
-	}
-	if c.config.OrganizationID != "" {
-		headers["OpenAI-Organization"] = c.config.OrganizationID
-	}
+	httpReq.Header.Set("Authorization", "Bearer "+c.config.APIKey)
+	httpReq.Header.Set("Content-Type", "application/json")
 
-	resp, err := llmrequest.SendRequest(ctx, httpReq, headers)
+	client := &http.Client{Timeout: 60 * time.Second}
+	resp, err := client.Do(httpReq)
 	if err != nil {
-		return nil, fmt.Errorf("request failed: %w", err)
+		fmt.Fprintf(os.Stderr, "http error: %v\n", err)
+		os.Exit(1)
 	}
 	defer resp.Body.Close()
 
-	var responsesResponse ResponsesResponse
-	if err := json.NewDecoder(resp.Body).Decode(&responsesResponse); err != nil {
-		return nil, fmt.Errorf("failed to decode response: %w", err)
+	if resp.StatusCode < 200 || resp.StatusCode >= 300 {
+		var buf bytes.Buffer
+		_, _ = buf.ReadFrom(resp.Body)
+		return nil, fmt.Errorf("Responses: non-2xx status code: %s", resp.Status)
 	}
-	return &responsesResponse, nil
+
+	resByte, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return nil, fmt.Errorf("Responses: read response body error: %w", err)
+	}
+
+	var respData ResponsesResponse
+	if err := json.Unmarshal(resByte, &respData); err != nil {
+		return nil, fmt.Errorf("Responses: decode response error: %w", err)
+	}
+
+	if len(respData.Output) == 0 {
+		fmt.Println("No output from model.")
+		return nil, fmt.Errorf("Responses: empty output from model")
+	}
+
+	return &respData, nil
 }
